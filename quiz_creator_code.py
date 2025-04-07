@@ -14,3 +14,13 @@ def answer():
     user_ans = str(input("Enter the correct answer letter from provided question: "))
 
 # Loop until exit
+while True:
+    try:
+        print("This is your quiz creator!")
+        question()
+        choices()
+        answer()
+
+    except ValueError:
+        print("Value entered is not allowed, try again.")
+        break
