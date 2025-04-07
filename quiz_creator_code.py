@@ -21,7 +21,8 @@ def choices():
 # Input correct answer
 def answer():
     user_ans = str(input("Enter the correct answer (A,B,C,D) from provided question: ")).upper()
-
+    while user_ans not in ["A", "B", "C", "D"]:
+        user_ans = input("Invalid input. Please enter A, B, C, or D: ").upper()
     return user_ans
 
 # Loop until exit
@@ -44,5 +45,3 @@ while True:
 
     else:
         print("Invalid input, enter just '1' or '7'.\n")
-
-print(questions_list)
