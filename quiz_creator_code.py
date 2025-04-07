@@ -15,12 +15,17 @@ def answer():
 
 # Loop until exit
 while True:
-    try:
-        print("This is your quiz creator!")
+    print("This is your quiz creator!")
+    choice = int(input("Enter '7' to exit. Enter '1' to continue: "))
+
+    if choice == 1:
         question()
         choices()
         answer()
 
-    except ValueError:
-        print("Value entered is not allowed, try again.")
+    elif choice == 7:
+        print("Exiting, have a nice day!")
         break
+
+    else:
+        print("Invalid input, enter just '1' or '7'.\n")
