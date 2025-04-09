@@ -29,9 +29,14 @@ def answer():
 # Loop until exit
 while True:
     print("Enter your question!")
-    choice = int(input("Enter '7' to exit. Enter '1' to continue: "))
+    while True:
+        choice = str(input("Enter '7' to exit. Enter '1' to continue: "))
+        if choice in ['1', '7']:
+            break
+        else:
+            print("Invalid input. Enter just number '1' to continue, and '7' to exit\n")
 
-    if choice == 1:
+    if choice == '1':
         q = question()
         ca = user_choice_a()
         cb = user_choice_b()
