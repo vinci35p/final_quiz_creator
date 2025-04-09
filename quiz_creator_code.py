@@ -18,17 +18,12 @@ def question():
     return user_question
 
 # Input choices
-def user_choice_a():
-    return input("\nEnter choice A: ")
+def quest_choices():
+    choices = {}
+    for letter in ['A', 'B', 'C', 'D']:
+        choices[letter] = input(f"Enter choice {letter} : ")
 
-def user_choice_b():
-    return input("Enter choice B: ")
-
-def user_choice_c():
-    return input("Enter choice C: ")
-
-def user_choice_d():
-    return input("Enter choice D: ")
+    return choices
 
 # Input correct answer
 def answer():
@@ -37,7 +32,7 @@ def answer():
         user_ans = input("Invalid input. Please enter A, B, C, or D: ").upper()
     return user_ans
 
-# Loop until exit
+# Main loop until exit
 while True:
     print("Enter your question!")
     while True:
@@ -49,17 +44,12 @@ while True:
 
     if choice == '1':
         q = question()
-        ca = user_choice_a()
-        cb = user_choice_b()
-        cc = user_choice_c()
-        cd = user_choice_d()
+        c = quest_choices()
         a = answer()
 
         file.write(f"{question_num}. Question: {q}\n")
-        file.write(f"A. {ca}\n")
-        file.write(f"B. {cb}\n")
-        file.write(f"C. {cc}\n")
-        file.write(f"D. {cd}\n")
+        for letter in ['A', 'B', 'C', 'D']:
+            file.write(f"{letter}. {c[letter]}\n")
         file.write(f"Correct Answer: {a}\n\n")
 
         question_num += 1
