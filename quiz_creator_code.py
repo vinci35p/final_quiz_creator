@@ -1,6 +1,17 @@
 # Text file to write the data
 file = open("collected_data.txt", "a")
 
+# Question number, and proceeding
+def starting_num():
+    try:
+        with open("collected_data.txt", "r") as f:
+            lines = f.readlines()
+            return sum(1 for line in lines if line.startswith("Question: " or line[0].isdigit()))
+    except FileNotFoundError:
+        return 0
+
+question_num = starting_num() + 1
+
 # Input question
 def question():
     user_question = str(input("\nEnter your preferred question: "))
@@ -44,14 +55,16 @@ while True:
         cd = user_choice_d()
         a = answer()
 
-        file.write(f"Question: {q}\n")
+        file.write(f"{question_num}. Question: {q}\n")
         file.write(f"A. {ca}\n")
         file.write(f"B. {cb}\n")
         file.write(f"C. {cc}\n")
         file.write(f"D. {cd}\n")
         file.write(f"Correct Answer: {a}\n\n")
 
-    elif choice == 7:
+        question_num += 1
+
+    elif choice == '7':
         print("Exiting, have a nice day!")
         file.close()
         break
