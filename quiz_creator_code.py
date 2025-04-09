@@ -28,7 +28,7 @@ def answer():
 
 # Loop until exit
 while True:
-    print("Welcome, this is your quiz creator!")
+    print("Enter your question!")
     choice = int(input("Enter '7' to exit. Enter '1' to continue: "))
 
     if choice == 1:
@@ -46,10 +46,9 @@ while True:
         file.write(f"D. {cd}\n")
         file.write(f"Correct Answer: {a}\n\n")
 
-        file.close()
-
     elif choice == 7:
         print("Exiting, have a nice day!")
+        file.close()
         break
 
     else:
