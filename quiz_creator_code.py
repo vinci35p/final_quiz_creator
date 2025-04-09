@@ -56,11 +56,11 @@ while True:
         a = answer()
 
         questions_list.append(f"Question: {q}")
-        choices_list_a.append(f"\nA. {ca}")
-        choices_list_b.append(f"\nB. {cb}")
-        choices_list_c.append(f"\nC. {cc}")
-        choices_list_d.append(f"\nD. {cd}")
-        answers_list.append(f"\nCorrect Answer: {a}")
+        choices_list_a.append(f"A. {ca}")
+        choices_list_b.append(f"B. {cb}")
+        choices_list_c.append(f"C. {cc}")
+        choices_list_d.append(f"D. {cd}")
+        answers_list.append(f"Correct Answer: {a}")
 
         file.write(str(questions_list))
         file.write(str(choices_list_a))
