@@ -1,13 +1,5 @@
 # Text file to write the data
-file = open("collected_data.txt", "w")
-
-# List of inputted values
-questions_list = []
-choices_list_a = []
-choices_list_b = []
-choices_list_c = []
-choices_list_d = []
-answers_list = []
+file = open("collected_data.txt", "a")
 
 # Input question
 def question():
@@ -16,24 +8,16 @@ def question():
 
 # Input choices
 def user_choice_a():
-    choice_a = input("\nEnter choice A: ")
-
-    return choice_a
+    return input("\nEnter choice A: ")
 
 def user_choice_b():
-    choice_b = input("Enter choice B: ")
-
-    return choice_b
+    return input("Enter choice B: ")
 
 def user_choice_c():
-    choice_c = input("Enter choice C: ")
-
-    return choice_c
+    return input("Enter choice C: ")
 
 def user_choice_d():
-    choice_d = input("Enter choice D: ")
-
-    return choice_d
+    return input("Enter choice D: ")
 
 # Input correct answer
 def answer():
@@ -55,19 +39,12 @@ while True:
         cd = user_choice_d()
         a = answer()
 
-        questions_list.append(f"Question: {q}")
-        choices_list_a.append(f"A. {ca}")
-        choices_list_b.append(f"B. {cb}")
-        choices_list_c.append(f"C. {cc}")
-        choices_list_d.append(f"D. {cd}")
-        answers_list.append(f"Correct Answer: {a}")
-
-        file.write(str(questions_list))
-        file.write(str(choices_list_a))
-        file.write(str(choices_list_b))
-        file.write(str(choices_list_c))
-        file.write(str(choices_list_d))
-        file.write(str(answers_list))
+        file.write(f"Question: {q}\n")
+        file.write(f"A. {ca}\n")
+        file.write(f"B. {cb}\n")
+        file.write(f"C. {cc}\n")
+        file.write(f"D. {cd}\n")
+        file.write(f"Correct Answer: {a}\n\n")
 
         file.close()
 
