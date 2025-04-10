@@ -2,7 +2,7 @@ from colorama import Fore
 import sys
 import time
 
-# Text file to write the data
+# Text file to collect and write the data
 file = open("collected_data.txt", "a")
 
 # Question number, and proceeding
@@ -19,6 +19,7 @@ question_num = starting_num() + 1
 # Input question
 def question():
     user_question = str(input(Fore.CYAN + "\nEnter your preferred question: "))
+
     return user_question
 
 # Input choices
@@ -34,6 +35,7 @@ def answer():
     user_ans = str(input(Fore.LIGHTBLUE_EX + "\nEnter the correct answer (A,B,C,D) from provided question: ")).upper()
     while user_ans not in ["A", "B", "C", "D"]:
         user_ans = input(Fore.RED + "Invalid input. Please enter A, B, C, or D: ").upper()
+
     return user_ans
 
 # Loading text after questions, choices and answers are inputted
@@ -43,7 +45,7 @@ def loading_animation():
         sys.stdout.write(Fore.RED + ".")
         sys.stdout.flush()
         time.sleep(0.75)
-    print(Fore.YELLOW + "\nSaved successfully!")
+    print(Fore.YELLOW + "\nSaved successfully! Check your text file to see your inputted values.")
     print()
 
 # Main loop until exit
@@ -53,6 +55,7 @@ while True:
         choice = str(input(Fore.YELLOW + "Enter '7' to exit. Enter '1' to continue: "))
         if choice in ['1', '7']:
             break
+
         else:
             print(Fore.RED + "Invalid input. Enter just number '1' to continue, and '7' to exit\n")
 
