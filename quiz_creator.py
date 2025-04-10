@@ -1,3 +1,8 @@
+import colorama
+from colorama import Fore
+
+colorama.init()
+
 # Text file to write the data
 file = open("collected_data.txt", "a")
 
@@ -14,33 +19,33 @@ question_num = starting_num() + 1
 
 # Input question
 def question():
-    user_question = str(input("\nEnter your preferred question: "))
+    user_question = str(input(Fore.CYAN + "\nEnter your preferred question: "))
     return user_question
 
 # Input choices
 def quest_choices():
     choices = {}
     for letter in ['A', 'B', 'C', 'D']:
-        choices[letter] = input(f"Enter choice {letter} : ")
+        choices[letter] = input(Fore.BLUE+ f"Enter choice {letter} : ")
 
     return choices
 
 # Input correct answer
 def answer():
-    user_ans = str(input("\nEnter the correct answer (A,B,C,D) from provided question: ")).upper()
+    user_ans = str(input(Fore.LIGHTBLUE_EX + "\nEnter the correct answer (A,B,C,D) from provided question: ")).upper()
     while user_ans not in ["A", "B", "C", "D"]:
-        user_ans = input("Invalid input. Please enter A, B, C, or D: ").upper()
+        user_ans = input(Fore.RED + "Invalid input. Please enter A, B, C, or D: ").upper()
     return user_ans
 
 # Main loop until exit
 while True:
-    print("Enter your question!")
+    print(Fore.LIGHTYELLOW_EX + "Enter your question!")
     while True:
-        choice = str(input("Enter '7' to exit. Enter '1' to continue: "))
+        choice = str(input(Fore.YELLOW + "Enter '7' to exit. Enter '1' to continue: "))
         if choice in ['1', '7']:
             break
         else:
-            print("Invalid input. Enter just number '1' to continue, and '7' to exit\n")
+            print(Fore.RED + "Invalid input. Enter just number '1' to continue, and '7' to exit\n")
 
     if choice == '1':
         q = question()
@@ -55,9 +60,9 @@ while True:
         question_num += 1
 
     elif choice == '7':
-        print("Exiting, have a nice day!")
+        print(Fore.MAGENTA + "Exiting, have a nice day!")
         file.close()
         break
 
     else:
-        print("Invalid input, enter just '1' or '7'.\n")
+        print(Fore.RED + "Invalid input, enter just '1' or '7'.\n")
