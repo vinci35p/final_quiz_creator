@@ -1,7 +1,6 @@
-import colorama
 from colorama import Fore
-
-colorama.init()
+import sys
+import time
 
 # Text file to write the data
 file = open("collected_data.txt", "a")
@@ -37,6 +36,16 @@ def answer():
         user_ans = input(Fore.RED + "Invalid input. Please enter A, B, C, or D: ").upper()
     return user_ans
 
+# Loading text after questions, choices and answers are inputted
+def loading_animation():
+    print(Fore.LIGHTRED_EX + "Saving your question", end='')
+    for _ in range(3):
+        sys.stdout.write(Fore.RED + ".")
+        sys.stdout.flush()
+        time.sleep(0.75)
+    print(Fore.YELLOW + "\nSaved successfully!")
+    print()
+
 # Main loop until exit
 while True:
     print(Fore.LIGHTYELLOW_EX + "Enter your question!")
@@ -51,6 +60,8 @@ while True:
         q = question()
         c = quest_choices()
         a = answer()
+
+        loading_animation()
 
         file.write(f"{question_num}. Question: {q}\n")
         for letter in ['A', 'B', 'C', 'D']:
