@@ -77,6 +77,3 @@ while True:
         print(Fore.MAGENTA + "Exiting, have a nice day!")
         file.close()
         break
-
-    else:
-        print(Fore.RED + "Invalid input, enter just '1' or '7'.\n")
