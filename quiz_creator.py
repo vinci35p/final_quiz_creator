@@ -60,16 +60,16 @@ while True:
             print(Fore.RED + "Invalid input. Enter just number '1' to continue, and '7' to exit\n")
 
     if choice == '1':
-        q = question()
-        c = quest_choices()
-        a = answer()
+        question = question()
+        choices = quest_choices()
+        answer = answer()
 
         loading_animation()
 
-        file.write(f"{question_num}. Question: {q}\n")
+        file.write(f"{question_num}. Question: {question}\n")
         for letter in ['A', 'B', 'C', 'D']:
-            file.write(f"{letter}. {c[letter]}\n")
-        file.write(f"Correct Answer: {a}\n\n")
+            file.write(f"{letter}. {choices[letter]}\n")
+        file.write(f"Correct Answer: {answer}\n\n")
 
         question_num += 1
 
