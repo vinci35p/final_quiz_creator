@@ -48,10 +48,31 @@ def loading_animation():
     print(Fore.YELLOW + "\nSaved successfully! Check your text file to see your inputted values.")
     print()
 
-def read_txt_file():
+# Read quiz file and randomly select question with choices
+def read_txt_file(quiz_txt):
     with open("quiz_txt", "r") as f:
-        file_txt = f.read()
-        print(file_txt)
+        file_txt = f.read().strip()
+
+    solo_quests = file_txt.split("\n\n")
+    question_list = []
+
+    for solo_quest in solo_quests:
+        lines = solo_quest.strip().split("\n")
+        if len(lines) >= 6:
+            quest_part = lines[1]
+            choices_part = lines[1:5]
+            answer_part = lines[5]
+            answer_key = answer_part.split(":")[-1].strip()
+            question_list.append({
+                "question" : quest_part,
+                "choices" : choices_part,
+                "answer" : answer_key
+            })
+
+    return question_list
+
+# Print the questions randomly then let the user answer every rambled question
+
 
 # Main loop until exit
 while True:
@@ -65,16 +86,16 @@ while True:
             print(Fore.RED + "Invalid input. Enter just number '1' to continue, and '7' to exit\n")
 
     if choice == '1':
-        question = question()
+        questions = question()
         choices = quest_choices()
-        answer = answer()
+        answers = answer()
 
         loading_animation()
 
-        file.write(f"{question_num}. Question: {question}\n")
+        file.write(f"{question_num}. Question: {questions}\n")
         for letter in ['A', 'B', 'C', 'D']:
             file.write(f"{letter}. {choices[letter]}\n")
-        file.write(f"Correct Answer: {answer}\n\n")
+        file.write(f"Correct Answer: {answers}\n\n")
 
         question_num += 1
 
@@ -82,5 +103,3 @@ while True:
         print(Fore.MAGENTA + "Exiting, have a nice day!\n")
         file.close()
         break
-
-read_txt_file()
