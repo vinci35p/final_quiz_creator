@@ -48,6 +48,11 @@ def loading_animation():
     print(Fore.YELLOW + "\nSaved successfully! Check your text file to see your inputted values.")
     print()
 
+def read_txt_file():
+    with open("quiz_txt", "r") as f:
+        file_txt = f.read()
+        print(file_txt)
+
 # Main loop until exit
 while True:
     print(Fore.LIGHTYELLOW_EX + "Enter your question!")
@@ -74,7 +79,8 @@ while True:
         question_num += 1
 
     elif choice == '7':
-        print(Fore.MAGENTA + "Exiting, have a nice day!")
+        print(Fore.MAGENTA + "Exiting, have a nice day!\n")
         file.close()
         break
 
+read_txt_file()
