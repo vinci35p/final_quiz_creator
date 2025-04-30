@@ -1,9 +1,10 @@
 from colorama import Fore
 import sys
 import time
+import random
 
 # Text file to collect and write the data
-file = open("quiz_txt", "a")
+file = open("quiz_txt.txt", "a")
 
 # Question number, and proceeding
 def starting_num():
@@ -50,7 +51,7 @@ def loading_animation():
 
 # Read quiz file and randomly select question with choices
 def read_txt_file(quiz_txt):
-    with open("quiz_txt", "r") as f:
+    with open("quiz_txt.txt", "r") as f:
         file_txt = f.read().strip()
 
     solo_quests = file_txt.split("\n\n")
@@ -72,6 +73,31 @@ def read_txt_file(quiz_txt):
     return question_list
 
 # Print the questions randomly then let the user answer every rambled question
+def execute_quiz(question_list):
+    score = 0
+    total = len(question_list)
+    quiz = random.sample(question_list, total)
+
+    for num, question_list in enumerate(quiz, 1):
+        print(f"\nQuestion {num}: {question_list['question']}")
+        for choice in question_list['choices']:
+            print(choice)
+
+        while True:
+            user_ans = input("Enter your answer (A, B, C, or D): ").strip().upper()
+            if user_ans in ["A, B, C, D"]:
+                break
+            else:
+                print("Invalid input. Please enter a viable answer (A, B, C, or D).")
+
+        if user_ans == question_list["answer"]:
+            print("You got it!")
+            score += 1
+
+        else:
+            print("Didn't got it, keep up!")
+
+    print(f"\nYou got {score} out of {total}.")
 
 
 # Main loop until exit
@@ -103,3 +129,9 @@ while True:
         print(Fore.MAGENTA + "Exiting, have a nice day!\n")
         file.close()
         break
+
+# ---- MAIN QUIZ ----
+file = 'quiz_txt.txt'
+
+quiz_questions = read_txt_file(file)
+execute_quiz(quiz_questions)
