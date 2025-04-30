@@ -1,63 +1,14 @@
+from Scripts.bottle import delete
 from colorama import Fore
 import sys
 import time
 import random
+import os
 
-# Read quiz file and randomly select question with choices
-def read_txt_file(quiz_txt):
-    with open("quiz_txt.txt", "r") as f:
-        file_txt = f.read().strip()
-
-    solo_quests = file_txt.split("\n\n")
-    question_list = []
-
-    for solo_quest in solo_quests:
-        lines = solo_quest.strip().split("\n")
-        if len(lines) >= 6:
-            quest_part = lines[0]
-            choices_part = lines[1:5]
-            answer_part = lines[5]
-            answer_key = answer_part.split(":")[-1].strip()
-            question_list.append({
-                "question" : quest_part,
-                "choices" : choices_part,
-                "answer" : answer_key
-            })
-
-    return question_list
-
-# Print the questions randomly then let the user answer every rambled question
-def execute_quiz(question_list):
-    score = 0
-    total = len(question_list)
-    quiz = random.sample(question_list, total)
-
-    for num, question_list in enumerate(quiz, 1):
-        print(f"\n{question_list['question']}")
-        for choice in question_list['choices']:
-            print(choice)
-
-        while True:
-            user_ans = input("Enter your answer (A, B, C, or D): ").strip().upper()
-            if user_ans in ['A', 'B', 'C', 'D']:
-                break
-            else:
-                print("Invalid input. Please enter a viable answer (A, B, C, or D).")
-
-        if user_ans == question_list["answer"]:
-            print("You got it!")
-            score += 1
-
-        else:
-            print("Didn't got it, keep up!")
-
-    print(f"\nYou got {score} out of {total}.\n")
-
-
-# Main loop until exit
+# Compile quiz to txt file
 def compiler_quiz():
     # Text file to collect and write the data
-    file = open("quiz_txt.txt", "a")
+    file = open("quiz_txt", "a")
 
     # Question number, and proceeding
     def starting_num():
@@ -131,9 +82,65 @@ def compiler_quiz():
             print(Fore.MAGENTA + "Exiting, have a nice day!\n")
             file.close()
             break
+# Read quiz file and randomly select question with choices
+def read_txt_file(quiz_txt):
+    with open("quiz_txt", "r") as f:
+        file_txt = f.read().strip()
+
+    solo_quests = file_txt.split("\n\n")
+    question_list = []
+
+    for solo_quest in solo_quests:
+        lines = solo_quest.strip().split("\n")
+        if len(lines) >= 6:
+            quest_part = lines[0]
+            choices_part = lines[1:5]
+            answer_part = lines[5]
+            answer_key = answer_part.split(":")[-1].strip()
+            question_list.append({
+                "question" : quest_part,
+                "choices" : choices_part,
+                "answer" : answer_key
+            })
+
+    return question_list
+
+# Print the questions randomly then let the user answer every rambled question
+def execute_quiz(question_list):
+    score = 0
+    total = len(question_list)
+    quiz = random.sample(question_list, total)
+
+    for num, question_list in enumerate(quiz, 1):
+        print(f"\n{question_list['question']}")
+        for choice in question_list['choices']:
+            print(choice)
+
+        while True:
+            user_ans = input("Enter your answer (A, B, C, or D): ").strip().upper()
+            if user_ans in ['A', 'B', 'C', 'D']:
+                break
+            else:
+                print("Invalid input. Please enter a viable answer (A, B, C, or D).")
+
+        if user_ans == question_list["answer"]:
+            print("You got it!")
+            score += 1
+
+        else:
+            print("Didn't got it, keep up!")
+
+    print(f"\nYou got {score} out of {total}.\n")
+
+def delete_quiz_file(quiz_txt):
+    try:
+        os.remove(quiz_txt)
+        print(f"\nQuiz file '{quiz_txt}' has been deleted.\n")
+    except FileNotFoundError:
+        print(f"\nQuiz file '{quiz_txt}' not found, there's nothing to delete.\n")
 
 # ---- MAIN QUIZ ----
-file = 'quiz_txt.txt'
+file = 'quiz_txt'
 
 quiz_questions = read_txt_file(file)
 
@@ -149,6 +156,12 @@ while True:
 
         else:
             print("Invalid input. Enter just '1', '2' or '3'.")
+
+    if user_decision == '1':
+        delete_quiz_file(file)
+        compiler_quiz()
+        execute_quiz(quiz_questions)
+
 
     if user_decision == '2':
         compiler_quiz()
