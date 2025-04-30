@@ -60,7 +60,7 @@ def read_txt_file(quiz_txt):
     for solo_quest in solo_quests:
         lines = solo_quest.strip().split("\n")
         if len(lines) >= 6:
-            quest_part = lines[1]
+            quest_part = lines[0]
             choices_part = lines[1:5]
             answer_part = lines[5]
             answer_key = answer_part.split(":")[-1].strip()
