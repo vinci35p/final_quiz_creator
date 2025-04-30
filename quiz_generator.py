@@ -85,7 +85,7 @@ def execute_quiz(question_list):
 
         while True:
             user_ans = input("Enter your answer (A, B, C, or D): ").strip().upper()
-            if user_ans in ["A, B, C, D"]:
+            if user_ans in ['A', 'B', 'C', 'D']:
                 break
             else:
                 print("Invalid input. Please enter a viable answer (A, B, C, or D).")
