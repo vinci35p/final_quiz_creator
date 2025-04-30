@@ -79,7 +79,7 @@ def execute_quiz(question_list):
     quiz = random.sample(question_list, total)
 
     for num, question_list in enumerate(quiz, 1):
-        print(f"\nQuestion {num}: {question_list['question']}")
+        print(f"\n{question_list['question']}")
         for choice in question_list['choices']:
             print(choice)
 
