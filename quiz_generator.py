@@ -181,8 +181,19 @@ while True:
         quiz_questions = read_txt_file(file)
         if not quiz_questions:
             print("No quiz questions found. Please create questions first.")
+            break
         else:
-            execute_quiz(quiz_questions)
+            retry = 'Y'
+            while retry == 'Y':
+                execute_quiz(quiz_questions)
+                while True:
+                    retry = str(input("Do you want to take the quiz again? (Y/N): "))
+                    if retry in ['Y', 'N']:
+                        break
+                    else:
+                        print("Invalid input. Enter 'Y' or 'N'.")
+            print("Returning to main query.")
+
 
     if user_choice == 'N':
         break
