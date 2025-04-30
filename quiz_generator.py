@@ -148,8 +148,7 @@ while True:
     print("Welcome to your own quiz creator!\n")
     while True:
         user_decision = str(input("Enter '1' if you want to create a new set of questionnaires, '2' if you just want "
-                              "to add questions and continue to create and take the quiz, and '3' "
-                              "if you don't want to continue: "))
+                              "to add questions, and '3' if you don't want to continue: "))
 
         if user_decision in ['1', '2', '3']:
             break
@@ -160,13 +159,30 @@ while True:
     if user_decision == '1':
         delete_quiz_file(file)
         compiler_quiz()
-        execute_quiz(quiz_questions)
-
 
     if user_decision == '2':
         compiler_quiz()
-        execute_quiz(quiz_questions)
 
     if user_decision == '3':
         break
 
+while True:
+    print("Do you like to take the quiz now?")
+
+    while True:
+        user_choice = str(input("Enter your choice (Y/N): ")).strip().upper()
+
+        if user_choice in ['Y','N']:
+            break
+        else:
+            print("Invalid input, enter 'Y' or 'N'.")
+
+    if user_choice == 'Y':
+        quiz_questions = read_txt_file(file)
+        if not quiz_questions:
+            print("No quiz questions found. Please create questions first.")
+        else:
+            execute_quiz(quiz_questions)
+
+    if user_choice == 'N':
+        break
