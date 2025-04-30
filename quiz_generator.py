@@ -124,11 +124,11 @@ def execute_quiz(question_list):
                 print("Invalid input. Please enter a viable answer (A, B, C, or D).")
 
         if user_ans == question_list["answer"]:
-            print(Fore.GREEN + "You got it!")
+            loading_animation_right_answer()
             score += 1
 
         else:
-            print(Fore.LIGHTRED_EX + "Didn't got it, keep up!")
+            loading_animation_wrong_answer()
 
     print(Fore.LIGHTYELLOW_EX + f"\nYou got {score} out of {total}.\n")
 
@@ -138,6 +138,24 @@ def delete_quiz_file(quiz_txt):
         print(f"\nQuiz file '{quiz_txt}' has been deleted.\n")
     except FileNotFoundError:
         print(f"\nQuiz file '{quiz_txt}' not found, there's nothing to delete.\n")
+
+def loading_animation_right_answer():
+    print(Fore.LIGHTRED_EX + "Hmmm", end='')
+    for _ in range(3):
+        sys.stdout.write(Fore.RED + ".")
+        sys.stdout.flush()
+        time.sleep(0.75)
+    print(Fore.YELLOW + "\nYou got it!")
+    print()
+
+def loading_animation_wrong_answer():
+    print(Fore.LIGHTRED_EX + "Hmmm", end='')
+    for _ in range(3):
+        sys.stdout.write(Fore.RED + ".")
+        sys.stdout.flush()
+        time.sleep(0.75)
+    print(Fore.YELLOW + "\nYou didn't got it... Keep it up!")
+    print()
 
 # ---- MAIN QUIZ ----
 file = 'quiz_txt'
