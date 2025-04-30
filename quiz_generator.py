@@ -51,7 +51,7 @@ def execute_quiz(question_list):
         else:
             print("Didn't got it, keep up!")
 
-    print(f"\nYou got {score} out of {total}.")
+    print(f"\nYou got {score} out of {total}.\n")
 
 
 # Main loop until exit
@@ -137,5 +137,23 @@ file = 'quiz_txt.txt'
 
 quiz_questions = read_txt_file(file)
 
-compiler_quiz()
-execute_quiz(quiz_questions)
+while True:
+    print("Welcome to your own quiz creator!\n")
+    while True:
+        user_decision = str(input("Enter '1' if you want to create a new set of questionnaires, '2' if you just want "
+                              "to add questions and continue to create and take the quiz, and '3' "
+                              "if you don't want to continue: "))
+
+        if user_decision in ['1', '2', '3']:
+            break
+
+        else:
+            print("Invalid input. Enter just '1', '2' or '3'.")
+
+    if user_decision == '2':
+        compiler_quiz()
+        execute_quiz(quiz_questions)
+
+    if user_decision == '3':
+        break
+
