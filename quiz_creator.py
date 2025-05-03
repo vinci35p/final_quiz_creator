@@ -8,8 +8,8 @@ file = open("collected_data.txt", "a")
 # Question number, and proceeding
 def starting_num():
     try:
-        with open("collected_data.txt", "r") as f:
-            lines = f.readlines()
+        with open("collected_data.txt", "r") as collected_data:
+            lines = collected_data.readlines()
             return sum(1 for line in lines if line.startswith("Question: " or line[0].isdigit()))
     except FileNotFoundError:
         return 0

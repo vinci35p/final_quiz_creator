@@ -13,8 +13,8 @@ def compiler_quiz():
     # Question number, and proceeding
     def starting_num():
         try:
-            with open("collected_data.txt", "r") as f:
-                lines = f.readlines()
+            with open("collected_data.txt", "r") as collected_data_file:
+                lines = collected_data_file.readlines()
                 return sum(1 for line in lines if line.startswith("Question: " or line[0].isdigit()))
         except FileNotFoundError:
             return 0
@@ -84,8 +84,8 @@ def compiler_quiz():
             break
 # Read quiz file and randomly select question with choices
 def read_txt_file(quiz_txt):
-    with open("quiz_txt", "r") as f:
-        file_txt = f.read().strip()
+    with open("quiz_txt", "r") as collected_file:
+        file_txt = collected_file.read().strip()
 
     solo_quests = file_txt.split("\n\n")
     question_list = []
