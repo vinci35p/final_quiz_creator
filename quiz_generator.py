@@ -1,9 +1,9 @@
-from Scripts.bottle import delete
-from colorama import Fore
 import sys
 import time
 import random
 import os
+from Scripts.bottle import delete
+from colorama import Fore
 
 # Compile quiz to txt file
 def compiler_quiz():
